@@ -1,19 +1,22 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const { PORT, MYSQL_PUBLIC_URL, COUNTRIES_API, EXCHANGE_API } = process.env;
-
-if (!MYSQL_PUBLIC_URL || !COUNTRIES_API || !EXCHANGE_API) {
-  throw new Error("❌ Missing critical environment variables.");
-}
-
 const config = {
-  port: PORT || 5000,
-  databaseUrl: MYSQL_PUBLIC_URL,
+  port: process.env.PORT || 51320,
+
+  MYSQL_PUBLIC_URL: process.env.MYSQL_PUBLIC_URL || "mysql://root:JysdQeDlWYCTZjUyStUEQUlJJnisgToG@shinkansen.proxy.rlwy.net:17656/railway",
+
   api: {
-    countries: COUNTRIES_API,
-    rates: EXCHANGE_API
+    countries: process.env.COUNTRIES_API_URL,
+    rates: process.env.RATES_API_URL,
   },
 };
+
+// Updated validation
+if (!config.MYSQL_PUBLIC_URL || !config.api.countries || !config.api.rates) {
+  throw new Error(
+    "Missing critical environment variables. Check .env file for DATABASE_URL and API URLs."
+  );
+}
 
 export default config;
