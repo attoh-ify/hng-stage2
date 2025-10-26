@@ -2,13 +2,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const config = {
-  port: process.env.PORT || 51320,
-
+  port: process.env.PORT,
   MYSQL_PUBLIC_URL: process.env.MYSQL_PUBLIC_URL || "mysql://root:JysdQeDlWYCTZjUyStUEQUlJJnisgToG@shinkansen.proxy.rlwy.net:17656/railway",
-
   api: {
-    countries: process.env.COUNTRIES_API_URL,
-    rates: process.env.RATES_API_URL,
+    countries: process.env.COUNTRIES_API,
+    rates: process.env.EXCHANGE_API,
   },
 };
 
