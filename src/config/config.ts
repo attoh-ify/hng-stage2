@@ -3,17 +3,17 @@ dotenv.config();
 
 const config = {
   port: process.env.PORT,
-  MYSQL_PUBLIC_URL: process.env.MYSQL_PUBLIC_URL || "mysql://root:JysdQeDlWYCTZjUyStUEQUlJJnisgToG@shinkansen.proxy.rlwy.net:17656/railway",
+  MYSQL_PUBLIC_URL: "mysql://root:JysdQeDlWYCTZjUyStUEQUlJJnisgToG@shinkansen.proxy.rlwy.net:17656/railway",
   api: {
-    countries: process.env.COUNTRIES_API,
-    rates: process.env.EXCHANGE_API,
+    countries: "https://restcountries.com/v2/all?fields=name,capital,region,population,flag,currencies",
+    rates: "https://open.er-api.com/v6/latest/USD",
   },
 };
 
 // Updated validation
-if (!config.MYSQL_PUBLIC_URL || !config.api.countries || !config.api.rates) {
+if (!config.port) {
   throw new Error(
-    "Missing critical environment variables. Check .env file for DATABASE_URL and API URLs."
+    "Missing port variables. Check .env file."
   );
 }
 
